@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T06:55:28.519991+00:00",
+  "generated_at": "2026-09-11T07:09:39.917710+00:00",
   "total_submissions": 422,
   "completed_submissions": 422,
   "by_enumerator": {
@@ -208,5 +208,113 @@
     "2026-09-08": 86,
     "2026-09-09": 46,
     "2026-09-10": 91
-  }
+  },
+  "gps_issue_count": 14,
+  "by_gps_reason": {
+    "No GPS signal at this location (dense cover/indoors)": 8,
+    "Device GPS not working": 3,
+    "Other: It's not dropping upon so many attempts": 1,
+    "Other: Taking longer time for me even after switching off my phone several times ": 1,
+    "Other: Tried harder to catch but not ": 1
+  },
+  "gps_issues": [
+    {
+      "enumerator": "enum_r",
+      "date": "2026-09-08",
+      "lga": "jega",
+      "community": "Gindi Village",
+      "reason": "Device GPS not working"
+    },
+    {
+      "enumerator": "enum_d",
+      "date": "2026-09-09",
+      "lga": "jega",
+      "community": "Hanyar kwalakoje",
+      "reason": "No GPS signal at this location (dense cover/indoors)"
+    },
+    {
+      "enumerator": "enum_d",
+      "date": "2026-09-09",
+      "lga": "jega",
+      "community": "Hanyar kwalakoje",
+      "reason": "No GPS signal at this location (dense cover/indoors)"
+    },
+    {
+      "enumerator": "enum_d",
+      "date": "2026-09-10",
+      "lga": "wasagu_danko",
+      "community": "Waje hayi",
+      "reason": "No GPS signal at this location (dense cover/indoors)"
+    },
+    {
+      "enumerator": "enum_f",
+      "date": "2026-09-10",
+      "lga": "wasagu_danko",
+      "community": "Hayi Area",
+      "reason": "Device GPS not working"
+    },
+    {
+      "enumerator": "enum_g",
+      "date": "2026-09-10",
+      "lga": "wasagu_danko",
+      "community": "Unguwar'yamma",
+      "reason": "No GPS signal at this location (dense cover/indoors)"
+    },
+    {
+      "enumerator": "enum_c",
+      "date": "2026-09-10",
+      "lga": "wasagu_danko",
+      "community": "Ribah fada ",
+      "reason": "No GPS signal at this location (dense cover/indoors)"
+    },
+    {
+      "enumerator": "enum_r",
+      "date": "2026-09-10",
+      "lga": "wasagu_danko",
+      "community": "Ungwan yamma",
+      "reason": "No GPS signal at this location (dense cover/indoors)"
+    },
+    {
+      "enumerator": "enum_r",
+      "date": "2026-09-10",
+      "lga": "wasagu_danko",
+      "community": "Ungwan yamma",
+      "reason": "No GPS signal at this location (dense cover/indoors)"
+    },
+    {
+      "enumerator": "enum_r",
+      "date": "2026-09-10",
+      "lga": "wasagu_danko",
+      "community": "Ungwan yamma",
+      "reason": "No GPS signal at this location (dense cover/indoors)"
+    },
+    {
+      "enumerator": "enum_k",
+      "date": "2026-09-10",
+      "lga": "wasagu_danko",
+      "community": "Kango",
+      "reason": "Other: It's not dropping upon so many attempts"
+    },
+    {
+      "enumerator": "enum_k",
+      "date": "2026-09-10",
+      "lga": "wasagu_danko",
+      "community": "Kango",
+      "reason": "Other: Taking longer time for me even after switching off my phone several times "
+    },
+    {
+      "enumerator": "enum_k",
+      "date": "2026-09-10",
+      "lga": "wasagu_danko",
+      "community": "Kango",
+      "reason": "Device GPS not working"
+    },
+    {
+      "enumerator": "enum_k",
+      "date": "2026-09-10",
+      "lga": "wasagu_danko",
+      "community": "Kango",
+      "reason": "Other: Tried harder to catch but not "
+    }
+  ]
 }
