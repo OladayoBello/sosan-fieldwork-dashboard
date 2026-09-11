@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOSAN Fieldwork Update</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --clay: #8B4530;
+    --clay-dark: #6E3626;
+    --sage: #5C6E3F;
+    --indigo: #3A5470;
+    --cream: #F6F0E4;
+    --card: #FFFFFF;
+    --ink: #26221C;
+    --muted: #7A7062;
+    --border: #E3D8C3;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+  header {
+    background: var(--clay);
+    color: var(--cream);
+    padding: 40px 6vw 32px;
+  }
+  header .eyebrow { font-size: 14px; color: #E8C9AE; margin-bottom: 8px; }
+  header h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: normal;
+    font-size: 34px;
+    margin: 0 0 10px;
+    max-width: 640px;
+  }
+  header .meta { font-size: 14px; color: #EFDFCD; }
+
+  main { padding: 32px 6vw 60px; }
+
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 36px;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 22px 26px;
+    flex: 1;
+    min-width: 200px;
+  }
+  .stat-card .num {
+    font-family: Georgia, serif;
+    font-size: 40px;
+    color: var(--clay-dark);
+  }
+  .stat-card .label { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
+  .panels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+  }
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 24px 26px;
+    flex: 1;
+    min-width: 320px;
+  }
+  .panel h2 {
+    font-family: Georgia, serif;
+    font-weight: normal;
+    font-size: 20px;
+    margin: 0 0 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .panel h2 .rule { width: 5px; height: 20px; display: inline-block; }
+  .panel.enumerators h2 .rule { background: var(--indigo); }
+  .panel.locations h2 .rule { background: var(--sage); }
+  .panel.timeline h2 .rule { background: var(--clay); }
+  .panel.full { flex-basis: 100%; }
+
+  canvas { max-width: 100%; }
+
+  .updated {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 30px;
+  }
+
+  .empty-note {
+    font-size: 14px;
+    color: var(--muted);
+    padding: 20px 0;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">SOSAN Household Survey</div>
+  <h1>Fieldwork progress, by enumerator and community</h1>
+  <div class="meta">Danko/Wasagu &middot; Augie &middot; Bagudo &middot; Gwandu &middot; Jega &middot; Shanga, Kebbi State</div>
+</header>
+
+<main>
+  <div class="stat-row" id="stat-row">
+    <div class="stat-card"><div class="num">&hellip;</div><div class="label">Loading</div></div>
+  </div>
+
+  <div class="panels">
+    <div class="panel enumerators">
+      <h2><span class="rule"></span>By enumerator</h2>
+      <canvas id="chart-enumerator" height="220"></canvas>
+    </div>
+    <div class="panel locations">
+      <h2><span class="rule"></span>By LGA</h2>
+      <canvas id="chart-lga" height="220"></canvas>
+    </div>
+    <div class="panel timeline full">
+      <h2><span class="rule"></span>Submissions over time</h2>
+      <canvas id="chart-timeline" height="110"></canvas>
+    </div>
+  </div>
+
+  <div class="updated" id="updated-note"></div>
+</main>
+
+<script>
+async function loadSummary() {
+  const statRow = document.getElementById('stat-row');
+  try {
+    const res = await fetch('data/summary.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('no data file yet');
+    const data = await res.json();
+    render(data);
+  } catch (e) {
+    statRow.innerHTML = '<div class="empty-note">No data yet. Once the summary script has run at least once, figures will appear here automatically.</div>';
+  }
+}
+
+function render(data) {
+  const statRow = document.getElementById('stat-row');
+  const numEnumerators = Object.keys(data.by_enumerator || {}).length;
+  const numCommunities = Object.keys(data.by_community || {}).length;
+
+  statRow.innerHTML = `
+    <div class="stat-card"><div class="num">${data.total_submissions ?? 0}</div><div class="label">Total submissions</div></div>
+    <div class="stat-card"><div class="num">${data.completed_submissions ?? 0}</div><div class="label">Completed interviews</div></div>
+    <div class="stat-card"><div class="num">${numEnumerators}</div><div class="label">Enumerators active</div></div>
+    <div class="stat-card"><div class="num">${numCommunities}</div><div class="label">Communities reached</div></div>
+  `;
+
+  const colors = { clay: '#8B4530', sage: '#5C6E3F', indigo: '#3A5470' };
+
+  barChart('chart-enumerator', data.by_enumerator, colors.indigo);
+  barChart('chart-lga', data.by_lga, colors.sage);
+  lineChart('chart-timeline', data.by_date, colors.clay);
+
+  const updated = data.generated_at ? new Date(data.generated_at).toLocaleString() : 'unknown';
+  document.getElementById('updated-note').textContent = `Last refreshed: ${updated}`;
+}
+
+function barChart(canvasId, obj, color) {
+  const entries = Object.entries(obj || {});
+  new Chart(document.getElementById(canvasId), {
+    type: 'bar',
+    data: {
+      labels: entries.map(([k]) => k),
+      datasets: [{ data: entries.map(([, v]) => v), backgroundColor: color }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+    }
+  });
+}
+
+function lineChart(canvasId, obj, color) {
+  const entries = Object.entries(obj || {}).sort(([a], [b]) => a.localeCompare(b));
+  new Chart(document.getElementById(canvasId), {
+    type: 'line',
+    data: {
+      labels: entries.map(([k]) => k),
+      datasets: [{
+        data: entries.map(([, v]) => v),
+        borderColor: color,
+        backgroundColor: color + '33',
+        fill: true,
+        tension: 0.25
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+    }
+  });
+}
+
+loadSummary();
+</script>
+
+</body>
+</html>
