@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-11T16:55:16.304671+00:00",
-  "total_submissions": 492,
-  "completed_submissions": 492,
+  "generated_at": "2026-09-11T19:28:22.325146+00:00",
+  "total_submissions": 506,
+  "completed_submissions": 506,
   "by_enumerator": {
     "enum_a": 40,
     "enum_b": 40,
@@ -9,15 +9,15 @@
     "enum_d": 40,
     "enum_e": 40,
     "enum_f": 40,
-    "enum_g": 33,
+    "enum_g": 40,
     "enum_h": 42,
     "enum_i": 40,
-    "enum_j": 34,
+    "enum_j": 41,
     "enum_k": 42,
     "enum_r": 41
   },
   "by_lga": {
-    "wasagu_danko": 159,
+    "wasagu_danko": 173,
     "jega": 132,
     "gwandu": 99,
     "augie": 80,
@@ -28,11 +28,13 @@
     "HAYI (RIBAH MACHIKA)": 15,
     "Dumbegu (Dumbegu/basora)": 13,
     "Millionaire quarters  (Ribah machika )": 13,
+    "Hayi (Ribah/Michika)": 13,
     "DANGAMAJI (DANGAMAJI)": 11,
     "Gindi (Gindi Nasarawa  Kyarmi)": 11,
     "Dumbegu  (Dumbegu Basaura )": 10,
     "Waje fada (Waje)": 10,
     "Dangamaji (Dangamaji)": 9,
+    "Unguwar'yamma (Ribah Machika)": 9,
     "Gidan ubankasa  (Augie North )": 8,
     "Yola (Yola)": 8,
     "Shiyar fada (Firchin)": 8,
@@ -41,7 +43,6 @@
     "Kofan gotomo (Dangaladima)": 7,
     "Dumbegu  (Basaura/Dumbegu )": 7,
     "Gindi (Kermi/Gindi)": 7,
-    "Hayi (Ribah/Michika)": 7,
     "Waje centre (Waje)": 7,
     "Unguwar Diba (Waje)": 7,
     "Dalijan (Dalijan)": 6,
@@ -90,7 +91,6 @@
     "Dumbegu (Dumbegu/ Basora)": 2,
     "Waje hayi (Waje)": 2,
     "Hayi (Waje)": 2,
-    "Unguwar'yamma (Ribah Machika)": 2,
     "Waje fada  (Waje)": 2,
     "Kango  (Ribah/machika )": 2,
     "Ungwan yamma  (Ribah machika )": 2,
@@ -223,7 +223,8 @@
     "Ungwan yamma  (Ribah/Machika)": 1,
     "Ungwan yamma  (Ribah/machika )": 1,
     "Ungwan Yamma (Ribah/machika)": 1,
-    "Ungwan Yamma  (Ribah machika )": 1
+    "Ungwan Yamma  (Ribah machika )": 1,
+    "Hayi (Ribah/Shanga)": 1
   },
   "by_date": {
     "2026-09-03": 1,
@@ -232,8 +233,8 @@
     "2026-09-07": 80,
     "2026-09-08": 86,
     "2026-09-09": 46,
-    "2026-09-10": 91,
-    "2026-09-11": 69
+    "2026-09-10": 92,
+    "2026-09-11": 82
   },
   "gps_issue_count": 16,
   "by_gps_reason": {
