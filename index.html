@@ -84,7 +84,6 @@
     gap: 10px;
   }
   .panel h2 .rule { width: 5px; height: 20px; display: inline-block; }
-  .panel.enumerators h2 .rule { background: var(--indigo); }
   .panel.locations h2 .rule { background: var(--sage); }
   .panel.timeline h2 .rule { background: var(--clay); }
   .panel.full { flex-basis: 100%; }
@@ -138,6 +137,23 @@
     font-size: 14px;
     width: 200px;
   }
+
+  .warn-rule { background: #A6462C; }
+  .gps-summary {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .gps-summary .pill {
+    background: #FBF0E8;
+    border: 1px solid #E9C7B4;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+  .gps-summary .pill b { color: #A6462C; font-size: 17px; }
+  table.gps-table td.reason { color: var(--muted); font-size: 13.5px; }
+  .no-issues { color: var(--sage); font-size: 14.5px; padding: 10px 0; }
 </style>
 </head>
 <body>
@@ -154,17 +170,13 @@
   </div>
 
   <div class="panels">
-    <div class="panel enumerators">
-      <h2><span class="rule"></span>By enumerator</h2>
-      <canvas id="chart-enumerator" height="220"></canvas>
-    </div>
     <div class="panel locations">
       <h2><span class="rule"></span>By LGA</h2>
       <canvas id="chart-lga" height="220"></canvas>
     </div>
-    <div class="panel timeline full">
+    <div class="panel timeline">
       <h2><span class="rule"></span>Submissions over time</h2>
-      <canvas id="chart-timeline" height="110"></canvas>
+      <canvas id="chart-timeline" height="220"></canvas>
     </div>
     <div class="panel full">
       <h2><span class="rule" style="background:var(--indigo);"></span>Enumerator record list</h2>
@@ -181,6 +193,27 @@
         </thead>
         <tbody></tbody>
       </table>
+    </div>
+    <div class="panel full">
+      <h2><span class="rule warn-rule"></span>GPS could not be captured</h2>
+      <div class="gps-summary" id="gps-summary"></div>
+      <div class="table-controls">
+        <input type="text" id="gps-search" placeholder="Search enumerator or community...">
+        <span style="font-size:13px;color:var(--muted);">Click a column heading to sort</span>
+      </div>
+      <table class="enum-table gps-table" id="gps-table">
+        <thead>
+          <tr>
+            <th data-key="date">Date <span class="arrow"></span></th>
+            <th data-key="enumerator">Enumerator <span class="arrow"></span></th>
+            <th data-key="lga">LGA <span class="arrow"></span></th>
+            <th data-key="community">Community <span class="arrow"></span></th>
+            <th data-key="reason">Reason given <span class="arrow"></span></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div id="gps-empty" class="no-issues" style="display:none;">No GPS capture failures recorded &mdash; every interview successfully captured a location.</div>
     </div>
   </div>
 
@@ -214,7 +247,6 @@ function render(data) {
 
   const colors = { clay: '#8B4530', sage: '#5C6E3F', indigo: '#3A5470' };
 
-  barChart('chart-enumerator', data.by_enumerator, colors.indigo, false);
   barChart('chart-lga', data.by_lga, colors.sage, true);
 
   const filteredDates = Object.entries(data.by_date || {})
@@ -222,6 +254,7 @@ function render(data) {
   lineChart('chart-timeline', Object.fromEntries(filteredDates), colors.clay);
 
   buildEnumeratorTable(data.by_enumerator || {});
+  buildGpsIssuesTable(data.gps_issues || [], data.by_gps_reason || {}, data.gps_issue_count || 0, data.total_submissions || 0);
 
   const updated = data.generated_at ? new Date(data.generated_at).toLocaleString() : 'unknown';
   document.getElementById('updated-note').textContent = `Last refreshed: ${updated}`;
@@ -319,6 +352,63 @@ function renderEnumeratorTable() {
   tbody.innerHTML = rows.map(r =>
     `<tr><td>${r.name}</td><td class="count">${r.count}</td></tr>`
   ).join('') || '<tr><td colspan="2" style="color:var(--muted);">No matching enumerators</td></tr>';
+}
+
+let gpsRows = [];
+let gpsSortState = { key: 'date', dir: -1 };
+
+function buildGpsIssuesTable(issues, byReason, issueCount, totalSubmissions) {
+  gpsRows = issues;
+
+  const summaryEl = document.getElementById('gps-summary');
+  const pct = totalSubmissions ? ((issueCount / totalSubmissions) * 100).toFixed(1) : '0.0';
+  let pillsHtml = `
+    <div class="pill"><b>${issueCount}</b> of ${totalSubmissions} interviews had no GPS captured (${pct}%)</div>
+  `;
+  Object.entries(byReason).forEach(([reason, count]) => {
+    pillsHtml += `<div class="pill"><b>${count}</b> &mdash; ${reason}</div>`;
+  });
+  summaryEl.innerHTML = pillsHtml;
+
+  if (issues.length === 0) {
+    document.getElementById('gps-table').style.display = 'none';
+    document.getElementById('gps-empty').style.display = 'block';
+    document.querySelector('.gps-table').closest('.panel').querySelector('.table-controls').style.display = 'none';
+    return;
+  }
+
+  renderGpsTable();
+
+  document.querySelectorAll('#gps-table th').forEach(th => {
+    th.addEventListener('click', () => {
+      const key = th.getAttribute('data-key');
+      gpsSortState.dir = (gpsSortState.key === key) ? -gpsSortState.dir : -1;
+      gpsSortState.key = key;
+      renderGpsTable();
+    });
+  });
+
+  document.getElementById('gps-search').addEventListener('input', renderGpsTable);
+}
+
+function renderGpsTable() {
+  const search = (document.getElementById('gps-search').value || '').toLowerCase();
+  const { key, dir } = gpsSortState;
+
+  let rows = gpsRows.filter(r =>
+    r.enumerator.toLowerCase().includes(search) || r.community.toLowerCase().includes(search)
+  );
+  rows.sort((a, b) => String(a[key]).localeCompare(String(b[key])) * dir);
+
+  document.querySelectorAll('#gps-table th').forEach(th => {
+    const arrow = th.querySelector('.arrow');
+    arrow.textContent = (th.getAttribute('data-key') === key) ? (dir === 1 ? '\u25B2' : '\u25BC') : '';
+  });
+
+  const tbody = document.querySelector('#gps-table tbody');
+  tbody.innerHTML = rows.map(r =>
+    `<tr><td>${r.date}</td><td>${r.enumerator}</td><td>${r.lga}</td><td>${r.community}</td><td class="reason">${r.reason}</td></tr>`
+  ).join('') || '<tr><td colspan="5" style="color:var(--muted);">No matching records</td></tr>';
 }
 
 loadSummary();
