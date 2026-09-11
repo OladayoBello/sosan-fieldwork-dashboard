@@ -10,57 +10,109 @@
   :root {
     --clay: #8B4530;
     --clay-dark: #6E3626;
+    --clay-light: #B8714F;
     --sage: #5C6E3F;
+    --sage-light: #86A15C;
     --indigo: #3A5470;
-    --cream: #F6F0E4;
+    --indigo-light: #5B7C9E;
+    --gold: #B8843A;
+    --gold-light: #DFB06B;
+    --gold-dark: #8A6226;
+    --cream: #F7F1E5;
+    --cream-deep: #EEE3CC;
     --card: #FFFFFF;
-    --ink: #26221C;
-    --muted: #7A7062;
-    --border: #E3D8C3;
+    --ink: #2A251E;
+    --muted: #7C7261;
+    --border: #E5D9C2;
+    --shadow: 139,69,48;
   }
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    background: var(--cream);
+    background:
+      radial-gradient(ellipse 1200px 600px at 15% -10%, rgba(184,113,79,0.10), transparent),
+      radial-gradient(ellipse 900px 500px at 100% 15%, rgba(92,110,63,0.08), transparent),
+      linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+    background-attachment: fixed;
     color: var(--ink);
     font-family: 'Helvetica Neue', Arial, sans-serif;
   }
+
   header {
-    background: var(--clay);
+    position: relative;
+    background:
+      linear-gradient(135deg, var(--clay-dark) 0%, var(--clay) 55%, var(--clay-light) 130%);
     color: var(--cream);
-    padding: 40px 6vw 32px;
+    padding: 46px 6vw 38px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(var(--shadow), 0.25);
   }
-  header .eyebrow { font-size: 14px; color: #E8C9AE; margin-bottom: 8px; }
+  header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.10;
+    background-image:
+      repeating-linear-gradient(45deg, transparent 0 18px, rgba(247,241,229,0.5) 18px 19px),
+      repeating-linear-gradient(-45deg, transparent 0 18px, rgba(247,241,229,0.5) 18px 19px);
+    pointer-events: none;
+  }
+  header > * { position: relative; }
+  header .eyebrow {
+    font-size: 13.5px;
+    letter-spacing: 0.06em;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
   header h1 {
     font-family: Georgia, 'Times New Roman', serif;
     font-weight: normal;
-    font-size: 34px;
-    margin: 0 0 10px;
-    max-width: 640px;
+    font-size: 38px;
+    line-height: 1.2;
+    margin: 0 0 12px;
+    max-width: 660px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.15);
   }
-  header .meta { font-size: 14px; color: #EFDFCD; }
+  header .meta { font-size: 14.5px; color: #F2E2CC; }
 
-  main { padding: 32px 6vw 60px; }
+  main { padding: 36px 6vw 70px; }
 
   .stat-row {
     display: flex;
     flex-wrap: wrap;
     gap: 18px;
-    margin-bottom: 36px;
+    margin-bottom: 40px;
   }
   .stat-card {
     background: var(--card);
-    border: 1px solid var(--border);
+    border-radius: 12px;
+    border-top: 4px solid var(--clay);
     padding: 22px 26px;
     flex: 1;
     min-width: 200px;
+    box-shadow: 0 2px 10px rgba(var(--shadow), 0.08);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
+  .stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(var(--shadow), 0.16);
+  }
+  .stat-card:nth-child(1) { border-top-color: var(--clay); }
+  .stat-card:nth-child(2) { border-top-color: var(--sage); }
+  .stat-card:nth-child(3) { border-top-color: var(--indigo); }
+  .stat-card:nth-child(4) { border-top-color: var(--gold); }
   .stat-card .num {
     font-family: Georgia, serif;
-    font-size: 40px;
-    color: var(--clay-dark);
+    font-size: 42px;
+    line-height: 1;
   }
-  .stat-card .label { font-size: 14px; color: var(--muted); margin-top: 4px; }
+  .stat-card:nth-child(1) .num { color: var(--clay-dark); }
+  .stat-card:nth-child(2) .num { color: var(--sage); }
+  .stat-card:nth-child(3) .num { color: var(--indigo); }
+  .stat-card:nth-child(4) .num { color: var(--gold-dark); }
+  .stat-card .label { font-size: 14px; color: var(--muted); margin-top: 6px; }
 
   .panels {
     display: flex;
@@ -69,23 +121,32 @@
   }
   .panel {
     background: var(--card);
-    border: 1px solid var(--border);
-    padding: 24px 26px;
+    border-radius: 14px;
+    padding: 26px 28px;
     flex: 1;
     min-width: 320px;
+    box-shadow: 0 2px 14px rgba(var(--shadow), 0.07);
+    transition: box-shadow 0.2s ease;
   }
+  .panel:hover { box-shadow: 0 6px 22px rgba(var(--shadow), 0.11); }
   .panel h2 {
     font-family: Georgia, serif;
     font-weight: normal;
-    font-size: 20px;
-    margin: 0 0 18px;
+    font-size: 21px;
+    margin: 0 0 20px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
   }
-  .panel h2 .rule { width: 5px; height: 20px; display: inline-block; }
-  .panel.locations h2 .rule { background: var(--sage); }
-  .panel.timeline h2 .rule { background: var(--clay); }
+  .panel h2 .rule {
+    width: 7px;
+    height: 24px;
+    display: inline-block;
+    border-radius: 4px;
+    box-shadow: 0 0 0 4px rgba(var(--shadow), 0.05);
+  }
+  .panel.locations h2 .rule { background: var(--sage); box-shadow: 0 0 0 4px rgba(92,110,63,0.10); }
+  .panel.timeline h2 .rule { background: var(--clay); box-shadow: 0 0 0 4px rgba(139,69,48,0.10); }
   .panel.full { flex-basis: 100%; }
 
   canvas { max-width: 100%; }
@@ -93,7 +154,8 @@
   .updated {
     font-size: 13px;
     color: var(--muted);
-    margin-top: 30px;
+    margin-top: 34px;
+    text-align: center;
   }
 
   .empty-note {
@@ -109,51 +171,112 @@
   }
   table.enum-table th, table.enum-table td {
     text-align: left;
-    padding: 9px 10px;
+    padding: 11px 12px;
     border-bottom: 1px solid var(--border);
   }
   table.enum-table th {
     color: var(--muted);
-    font-weight: normal;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 0.02em;
     cursor: pointer;
     user-select: none;
   }
-  table.enum-table th:hover { color: var(--ink); }
-  table.enum-table th .arrow { font-size: 11px; margin-left: 4px; opacity: 0.6; }
-  table.enum-table tbody tr:hover { background: #FBF7EF; }
-  table.enum-table td.count { font-weight: bold; color: var(--indigo); }
+  table.enum-table th:hover { color: var(--clay); }
+  table.enum-table th .arrow { font-size: 11px; margin-left: 4px; opacity: 0.7; color: var(--gold); }
+  table.enum-table tbody tr { transition: background 0.12s ease; }
+  table.enum-table tbody tr:hover { background: linear-gradient(90deg, #FBF3E8, #FFFFFF); }
+  table.enum-table td.count {
+    font-weight: bold;
+    color: var(--indigo);
+    background: linear-gradient(90deg, rgba(58,84,112,0.06), transparent);
+  }
 
   .table-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     gap: 12px;
   }
   .table-controls input {
     border: 1px solid var(--border);
-    padding: 7px 10px;
+    border-radius: 8px;
+    padding: 8px 12px;
     font-family: inherit;
     font-size: 14px;
-    width: 200px;
+    width: 220px;
+    background: #FCF9F2;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .table-controls input:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(184,132,58,0.15);
   }
 
-  .warn-rule { background: #A6462C; }
+  .warn-rule { background: var(--gold); box-shadow: 0 0 0 4px rgba(184,132,58,0.12) !important; }
   .gps-summary {
     display: flex;
-    gap: 18px;
-    margin-bottom: 18px;
+    gap: 14px;
+    margin-bottom: 20px;
     flex-wrap: wrap;
   }
   .gps-summary .pill {
-    background: #FBF0E8;
-    border: 1px solid #E9C7B4;
-    padding: 10px 16px;
-    font-size: 14px;
+    background: linear-gradient(135deg, #FBF0DC, #F7E5C4);
+    border: 1px solid #E7CB98;
+    border-radius: 24px;
+    padding: 10px 18px;
+    font-size: 13.5px;
   }
-  .gps-summary .pill b { color: #A6462C; font-size: 17px; }
+  .gps-summary .pill b { color: var(--gold-dark); font-size: 17px; }
   table.gps-table td.reason { color: var(--muted); font-size: 13.5px; }
-  .no-issues { color: var(--sage); font-size: 14.5px; padding: 10px 0; }
+  .no-issues {
+    color: var(--sage);
+    font-size: 14.5px;
+    padding: 14px 18px;
+    background: #F1F5EA;
+    border-radius: 10px;
+    border: 1px solid #DCE7CC;
+  }
+
+  .refresh-timer {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(223,176,107,0.25), rgba(223,176,107,0.12));
+    border: 1px solid rgba(223,176,107,0.5);
+    border-radius: 24px;
+    padding: 7px 16px;
+    font-size: 13.5px;
+    color: var(--cream);
+    margin-top: 18px;
+  }
+  .refresh-timer b { font-variant-numeric: tabular-nums; color: var(--gold-light); }
+
+  .support-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: linear-gradient(135deg, #25D366, #1EBE5A);
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 14px 22px;
+    border-radius: 30px;
+    font-size: 14.5px;
+    font-weight: bold;
+    box-shadow: 0 4px 16px rgba(30,190,90,0.4);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    z-index: 100;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .support-fab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(30,190,90,0.5);
+  }
+  .support-fab svg { width: 18px; height: 18px; fill: #FFFFFF; }
 </style>
 </head>
 <body>
@@ -162,7 +285,13 @@
   <div class="eyebrow">SOSAN Household Survey</div>
   <h1>Fieldwork progress, by enumerator and community</h1>
   <div class="meta">Danko/Wasagu &middot; Augie &middot; Bagudo &middot; Gwandu &middot; Jega &middot; Shanga, Kebbi State</div>
+  <div class="refresh-timer">Next data refresh in <b id="countdown">&ndash;&ndash;:&ndash;&ndash;:&ndash;&ndash;</b></div>
 </header>
+
+<a class="support-fab" id="support-link" href="#" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.07-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.6 0-3.1-.44-4.38-1.2l-.31-.18-3.12.81.83-3.04-.2-.32A7.96 7.96 0 014 12c0-4.42 3.58-8 8-8s8 3.58 8 8-3.58 8-8 8z"/></svg>
+  Technical support
+</a>
 
 <main>
   <div class="stat-row" id="stat-row">
@@ -239,13 +368,17 @@ function render(data) {
   const numCommunities = Object.keys(data.by_community || {}).length;
 
   statRow.innerHTML = `
-    <div class="stat-card"><div class="num">${data.total_submissions ?? 0}</div><div class="label">Total submissions</div></div>
-    <div class="stat-card"><div class="num">${data.completed_submissions ?? 0}</div><div class="label">Completed interviews</div></div>
+    <div class="stat-card"><div class="num">${data.total_submissions || 0}</div><div class="label">Total submissions</div></div>
+    <div class="stat-card"><div class="num">${data.completed_submissions || 0}</div><div class="label">Completed interviews</div></div>
     <div class="stat-card"><div class="num">${numEnumerators}</div><div class="label">Enumerators active</div></div>
     <div class="stat-card"><div class="num">${numCommunities}</div><div class="label">Communities reached</div></div>
   `;
 
-  const colors = { clay: '#8B4530', sage: '#5C6E3F', indigo: '#3A5470' };
+  const colors = {
+    clay: { light: '#B8714F', dark: '#8B4530', line: '#8B4530', fillTop: 'rgba(139,69,48,0.35)', fillBottom: 'rgba(139,69,48,0.02)' },
+    sage: { light: '#86A15C', dark: '#5C6E3F', line: '#5C6E3F', fillTop: 'rgba(92,110,63,0.35)', fillBottom: 'rgba(92,110,63,0.02)' },
+    indigo: { light: '#5B7C9E', dark: '#3A5470', line: '#3A5470', fillTop: 'rgba(58,84,112,0.35)', fillBottom: 'rgba(58,84,112,0.02)' }
+  };
 
   barChart('chart-lga', data.by_lga, colors.sage, true);
 
@@ -262,11 +395,22 @@ function render(data) {
 
 function barChart(canvasId, obj, color, showLabels) {
   const entries = Object.entries(obj || {});
-  new Chart(document.getElementById(canvasId), {
+  const ctx = document.getElementById(canvasId).getContext('2d');
+  const gradient = ctx.createLinearGradient(0, 0, 0, 260);
+  gradient.addColorStop(0, color.light);
+  gradient.addColorStop(1, color.dark);
+
+  new Chart(ctx, {
     type: 'bar',
     data: {
       labels: entries.map(([k]) => k),
-      datasets: [{ data: entries.map(([, v]) => v), backgroundColor: color }]
+      datasets: [{
+        data: entries.map(([, v]) => v),
+        backgroundColor: gradient,
+        borderRadius: 6,
+        borderSkipped: false,
+        maxBarThickness: 46
+      }]
     },
     options: {
       plugins: {
@@ -274,11 +418,14 @@ function barChart(canvasId, obj, color, showLabels) {
         datalabels: showLabels ? {
           anchor: 'end',
           align: 'top',
-          color: '#26221C',
-          font: { weight: 'bold' }
+          color: '#2A251E',
+          font: { weight: 'bold', size: 12 }
         } : false
       },
-      scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+      scales: {
+        y: { beginAtZero: true, ticks: { precision: 0 }, grid: { color: '#EFE6D3' } },
+        x: { grid: { display: false } }
+      }
     },
     plugins: [ChartDataLabels]
   });
@@ -286,16 +433,26 @@ function barChart(canvasId, obj, color, showLabels) {
 
 function lineChart(canvasId, obj, color) {
   const entries = Object.entries(obj || {}).sort(([a], [b]) => a.localeCompare(b));
-  new Chart(document.getElementById(canvasId), {
+  const ctx = document.getElementById(canvasId).getContext('2d');
+  const fillGradient = ctx.createLinearGradient(0, 0, 0, 260);
+  fillGradient.addColorStop(0, color.fillTop);
+  fillGradient.addColorStop(1, color.fillBottom);
+
+  new Chart(ctx, {
     type: 'line',
     data: {
       labels: entries.map(([k]) => k),
       datasets: [{
         data: entries.map(([, v]) => v),
-        borderColor: color,
-        backgroundColor: color + '33',
+        borderColor: color.line,
+        backgroundColor: fillGradient,
+        borderWidth: 2.5,
         fill: true,
-        tension: 0.25
+        tension: 0.3,
+        pointRadius: 4,
+        pointBackgroundColor: color.line,
+        pointBorderColor: '#FFFFFF',
+        pointBorderWidth: 2
       }]
     },
     options: {
@@ -303,12 +460,15 @@ function lineChart(canvasId, obj, color) {
         legend: { display: false },
         datalabels: {
           align: 'top',
-          color: '#26221C',
-          font: { weight: 'bold' },
+          color: '#2A251E',
+          font: { weight: 'bold', size: 12 },
           formatter: (v) => v
         }
       },
-      scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+      scales: {
+        y: { beginAtZero: true, ticks: { precision: 0 }, grid: { color: '#EFE6D3' } },
+        x: { grid: { display: false } }
+      }
     },
     plugins: [ChartDataLabels]
   });
@@ -412,6 +572,33 @@ function renderGpsTable() {
 }
 
 loadSummary();
+
+// Countdown to the next scheduled hourly refresh (top of the next hour, UTC-aligned
+// since that's what the GitHub Actions cron schedule uses).
+function updateCountdown() {
+  const now = new Date();
+  const next = new Date(now);
+  next.setUTCMinutes(0, 0, 0);
+  next.setUTCHours(next.getUTCHours() + 1);
+  const diff = Math.max(0, next - now);
+
+  const h = String(Math.floor(diff / 3600000)).padStart(2, '0');
+  const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+  const s = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+  document.getElementById('countdown').textContent = `${h}:${m}:${s}`;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// WhatsApp technical support button.
+// Replace PHONE_NUMBER below with your number in international format, no + or leading 0
+// (e.g. Nigerian number 0803 123 4567 becomes 2348031234567).
+const SUPPORT_PHONE_NUMBER = '447979618740';
+const supportMessage = encodeURIComponent(
+  "Hello, I need technical support with the SOSAN survey. My enumerator ID is: "
+);
+document.getElementById('support-link').href =
+  `https://wa.me/${SUPPORT_PHONE_NUMBER}?text=${supportMessage}`;
 </script>
 
 </body>
