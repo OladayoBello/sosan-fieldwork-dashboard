@@ -1,31 +1,33 @@
 {
-  "generated_at": "2026-09-11T15:44:36.492248+00:00",
-  "total_submissions": 457,
-  "completed_submissions": 457,
+  "generated_at": "2026-09-11T16:55:16.304671+00:00",
+  "total_submissions": 492,
+  "completed_submissions": 492,
   "by_enumerator": {
-    "enum_a": 34,
+    "enum_a": 40,
     "enum_b": 40,
-    "enum_c": 34,
+    "enum_c": 41,
     "enum_d": 40,
     "enum_e": 40,
     "enum_f": 40,
     "enum_g": 33,
-    "enum_h": 35,
-    "enum_i": 33,
+    "enum_h": 42,
+    "enum_i": 40,
     "enum_j": 34,
     "enum_k": 42,
-    "enum_r": 34
+    "enum_r": 41
   },
   "by_lga": {
+    "wasagu_danko": 159,
     "jega": 132,
-    "wasagu_danko": 125,
     "gwandu": 99,
     "augie": 80,
     "bagudo": 2,
     "shanga": 1
   },
   "by_community": {
+    "HAYI (RIBAH MACHIKA)": 15,
     "Dumbegu (Dumbegu/basora)": 13,
+    "Millionaire quarters  (Ribah machika )": 13,
     "DANGAMAJI (DANGAMAJI)": 11,
     "Gindi (Gindi Nasarawa  Kyarmi)": 11,
     "Dumbegu  (Dumbegu Basaura )": 10,
@@ -35,7 +37,6 @@
     "Yola (Yola)": 8,
     "Shiyar fada (Firchin)": 8,
     "Kofar gabas (Magaji B)": 8,
-    "HAYI (RIBAH MACHIKA)": 8,
     "Kofar gotomo  (Gwandu dangaladima )": 7,
     "Kofan gotomo (Dangaladima)": 7,
     "Dumbegu  (Basaura/Dumbegu )": 7,
@@ -47,11 +48,11 @@
     "Bagaye (Bagaye Mera)": 6,
     "Tiggi (Baraje)": 6,
     "Unguwar Buzaya  (Magaji B )": 6,
-    "Millionaire quarters  (Ribah machika )": 6,
     "Kofar Masama (Marafa)": 5,
     "Gidan ubankasa (Augie North)": 5,
     "BAGAYE MERA (BAGAYE)": 5,
     "Unguwaryama (Ribah Machika)": 5,
+    "Ungwan yamma (Ribah machika)": 5,
     "Kango (Ribah/Michika)": 5,
     "Kaurare (Malisa)": 4,
     "KOFAR MASAMA (MARAFA)": 4,
@@ -72,7 +73,7 @@
     "Bubuche1 (Bubuche)": 3,
     "Unguwar Buzaya (Magaji B)": 3,
     "Kofar gabas  (Magaji B )": 3,
-    "Ungwan yamma (Ribah machika)": 3,
+    "Millionaire quarters  (Ribah/machika)": 3,
     "Birije  (Malisa )": 2,
     "Kofar masama (Marafa)": 2,
     "Sabon gari (Masama)": 2,
@@ -91,6 +92,8 @@
     "Hayi (Waje)": 2,
     "Unguwar'yamma (Ribah Machika)": 2,
     "Waje fada  (Waje)": 2,
+    "Kango  (Ribah/machika )": 2,
+    "Ungwan yamma  (Ribah machika )": 2,
     "Ungwan yamma (Ribah/machika)": 2,
     "Millionaire quarters (Ribah machika)": 2,
     "Kango (Ribah/michika)": 2,
@@ -99,6 +102,7 @@
     "Unguwan diba  (Waje )": 2,
     "waje Center (Waje ward)": 2,
     "Waje center (Waje ward)": 2,
+    "Kango  (Ribah/Machika )": 2,
     "Kofar gotomo (Gwandu Dangaladima )": 1,
     "Sanyinnawa Area  (Masama Ward )": 1,
     "Sanyinnawa Area (Masama )": 1,
@@ -192,11 +196,9 @@
     "Tudun wada  (Ribah/Machika )": 1,
     "Tudun wada (Ribah/machika)": 1,
     "Kango (Ribah/machika)": 1,
-    "Kango  (Ribah/machika )": 1,
     "Ribah fada (Ribah/ machika )": 1,
     "Ribah fada  (Ribah/Machika )": 1,
     "Ribah fada kango  (Ribah/machika )": 1,
-    "Ungwan yamma  (Ribah machika )": 1,
     "Ungwan yamma  (Ribah/machika)": 1,
     "Ungwan yamma (Ribah/ machika)": 1,
     "Millionaire quarters  (Ribah machika)": 1,
@@ -210,7 +212,18 @@
     "waje center (waje ward)": 1,
     "waje center (Waje ward)": 1,
     "Kango  (Ribah/ Michika )": 1,
-    "Kango (Ribah/ Michika)": 1
+    "Kango (Ribah/ Michika)": 1,
+    "Ribah fada kango  (Ribah/ machika )": 1,
+    "Kango  (Ribah machika )": 1,
+    "Kongo  (Ribah/Machika )": 1,
+    "Kango Ribah fada  (Ribah/machika )": 1,
+    "Millionaire quarters (Ribah/machika)": 1,
+    "Millionaire quarters  (Ribah/machika )": 1,
+    "Millionaire quarters  (Ribah /machika)": 1,
+    "Ungwan yamma  (Ribah/Machika)": 1,
+    "Ungwan yamma  (Ribah/machika )": 1,
+    "Ungwan Yamma (Ribah/machika)": 1,
+    "Ungwan Yamma  (Ribah machika )": 1
   },
   "by_date": {
     "2026-09-03": 1,
@@ -220,12 +233,12 @@
     "2026-09-08": 86,
     "2026-09-09": 46,
     "2026-09-10": 91,
-    "2026-09-11": 35
+    "2026-09-11": 69
   },
-  "gps_issue_count": 14,
+  "gps_issue_count": 16,
   "by_gps_reason": {
     "No GPS signal at this location (dense cover/indoors)": 8,
-    "Device GPS not working": 3,
+    "Device GPS not working": 5,
     "Other: It's not dropping upon so many attempts": 1,
     "Other: Taking longer time for me even after switching off my phone several times ": 1,
     "Other: Tried harder to catch but not ": 1
@@ -328,6 +341,20 @@
       "lga": "wasagu_danko",
       "community": "Kango",
       "reason": "Other: Tried harder to catch but not "
+    },
+    {
+      "enumerator": "enum_r",
+      "date": "2026-09-11",
+      "lga": "wasagu_danko",
+      "community": "Ungwan yamma ",
+      "reason": "Device GPS not working"
+    },
+    {
+      "enumerator": "enum_r",
+      "date": "2026-09-11",
+      "lga": "wasagu_danko",
+      "community": "Ungwan yamma ",
+      "reason": "Device GPS not working"
     }
   ]
 }
