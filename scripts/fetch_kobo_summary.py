@@ -31,6 +31,15 @@ WARD_FIELD = "ward"
 COMMUNITY_FIELD = "community"
 DATE_FIELD = "date"
 OUTCOME_FIELD = "interview_outcome"    # present in some deployed versions only
+GPS_STATUS_FIELD = "gps_status"
+GPS_REASON_FIELD = "gps_no_reason"
+GPS_REASON_OTHER_FIELD = "gps_no_reason_other"
+
+GPS_REASON_LABELS = {
+    "no_signal": "No GPS signal at this location (dense cover/indoors)",
+    "device_issue": "Device GPS not working",
+    "other": "Other",
+}
 
 
 def fetch_all_submissions():
@@ -70,6 +79,9 @@ def build_summary(records):
     by_date = Counter()
     completed = 0
 
+    gps_issues = []
+    by_gps_reason = Counter()
+
     for r in records:
         enum_code = clean_field(r, ENUMERATOR_FIELD)
         lga = clean_field(r, LGA_FIELD)
@@ -77,6 +89,9 @@ def build_summary(records):
         ward = clean_field(r, WARD_FIELD)
         date = clean_field(r, DATE_FIELD)
         outcome = clean_field(r, OUTCOME_FIELD)
+        gps_status = clean_field(r, GPS_STATUS_FIELD)
+        gps_reason = clean_field(r, GPS_REASON_FIELD)
+        gps_reason_other = clean_field(r, GPS_REASON_OTHER_FIELD)
 
         if enum_code:
             by_enumerator[str(enum_code)] += 1
@@ -95,6 +110,19 @@ def build_summary(records):
         if outcome is None or str(outcome).lower() == "completed":
             completed += 1
 
+        if gps_status == "no":
+            reason_label = GPS_REASON_LABELS.get(gps_reason, gps_reason or "Not specified")
+            if gps_reason == "other" and gps_reason_other:
+                reason_label = f"Other: {gps_reason_other}"
+            by_gps_reason[reason_label] += 1
+            gps_issues.append({
+                "enumerator": str(enum_code) if enum_code else "Unknown",
+                "date": str(date)[:10] if date else "Unknown",
+                "lga": str(lga) if lga else "Unknown",
+                "community": str(community) if community else "Unknown",
+                "reason": reason_label,
+            })
+
     summary = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "total_submissions": total,
@@ -103,6 +131,9 @@ def build_summary(records):
         "by_lga": dict(sorted(by_lga.items(), key=lambda kv: -kv[1])),
         "by_community": dict(sorted(by_community.items(), key=lambda kv: -kv[1])),
         "by_date": dict(sorted(by_date.items())),
+        "gps_issue_count": len(gps_issues),
+        "by_gps_reason": dict(sorted(by_gps_reason.items(), key=lambda kv: -kv[1])),
+        "gps_issues": sorted(gps_issues, key=lambda x: x["date"]),
     }
     return summary
 
