@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SOSAN Fieldwork Update</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <style>
   :root {
     --clay: #8B4530;
@@ -101,6 +102,42 @@
     color: var(--muted);
     padding: 20px 0;
   }
+
+  table.enum-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+  }
+  table.enum-table th, table.enum-table td {
+    text-align: left;
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  table.enum-table th {
+    color: var(--muted);
+    font-weight: normal;
+    cursor: pointer;
+    user-select: none;
+  }
+  table.enum-table th:hover { color: var(--ink); }
+  table.enum-table th .arrow { font-size: 11px; margin-left: 4px; opacity: 0.6; }
+  table.enum-table tbody tr:hover { background: #FBF7EF; }
+  table.enum-table td.count { font-weight: bold; color: var(--indigo); }
+
+  .table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    gap: 12px;
+  }
+  .table-controls input {
+    border: 1px solid var(--border);
+    padding: 7px 10px;
+    font-family: inherit;
+    font-size: 14px;
+    width: 200px;
+  }
 </style>
 </head>
 <body>
@@ -128,6 +165,22 @@
     <div class="panel timeline full">
       <h2><span class="rule"></span>Submissions over time</h2>
       <canvas id="chart-timeline" height="110"></canvas>
+    </div>
+    <div class="panel full">
+      <h2><span class="rule" style="background:var(--indigo);"></span>Enumerator record list</h2>
+      <div class="table-controls">
+        <input type="text" id="enum-search" placeholder="Search enumerator...">
+        <span style="font-size:13px;color:var(--muted);">Click a column heading to sort</span>
+      </div>
+      <table class="enum-table" id="enum-table">
+        <thead>
+          <tr>
+            <th data-key="name">Enumerator <span class="arrow"></span></th>
+            <th data-key="count">Records submitted <span class="arrow"></span></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
   </div>
 
@@ -161,15 +214,20 @@ function render(data) {
 
   const colors = { clay: '#8B4530', sage: '#5C6E3F', indigo: '#3A5470' };
 
-  barChart('chart-enumerator', data.by_enumerator, colors.indigo);
-  barChart('chart-lga', data.by_lga, colors.sage);
-  lineChart('chart-timeline', data.by_date, colors.clay);
+  barChart('chart-enumerator', data.by_enumerator, colors.indigo, false);
+  barChart('chart-lga', data.by_lga, colors.sage, true);
+
+  const filteredDates = Object.entries(data.by_date || {})
+    .filter(([dateStr]) => dateStr >= '2026-09-05');
+  lineChart('chart-timeline', Object.fromEntries(filteredDates), colors.clay);
+
+  buildEnumeratorTable(data.by_enumerator || {});
 
   const updated = data.generated_at ? new Date(data.generated_at).toLocaleString() : 'unknown';
   document.getElementById('updated-note').textContent = `Last refreshed: ${updated}`;
 }
 
-function barChart(canvasId, obj, color) {
+function barChart(canvasId, obj, color, showLabels) {
   const entries = Object.entries(obj || {});
   new Chart(document.getElementById(canvasId), {
     type: 'bar',
@@ -178,9 +236,18 @@ function barChart(canvasId, obj, color) {
       datasets: [{ data: entries.map(([, v]) => v), backgroundColor: color }]
     },
     options: {
-      plugins: { legend: { display: false } },
+      plugins: {
+        legend: { display: false },
+        datalabels: showLabels ? {
+          anchor: 'end',
+          align: 'top',
+          color: '#26221C',
+          font: { weight: 'bold' }
+        } : false
+      },
       scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
-    }
+    },
+    plugins: [ChartDataLabels]
   });
 }
 
@@ -199,10 +266,59 @@ function lineChart(canvasId, obj, color) {
       }]
     },
     options: {
-      plugins: { legend: { display: false } },
+      plugins: {
+        legend: { display: false },
+        datalabels: {
+          align: 'top',
+          color: '#26221C',
+          font: { weight: 'bold' },
+          formatter: (v) => v
+        }
+      },
       scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
-    }
+    },
+    plugins: [ChartDataLabels]
   });
+}
+
+let enumRows = [];
+let sortState = { key: 'count', dir: -1 };
+
+function buildEnumeratorTable(byEnumerator) {
+  enumRows = Object.entries(byEnumerator).map(([name, count]) => ({ name, count }));
+  renderEnumeratorTable();
+
+  document.querySelectorAll('#enum-table th').forEach(th => {
+    th.addEventListener('click', () => {
+      const key = th.getAttribute('data-key');
+      sortState.dir = (sortState.key === key) ? -sortState.dir : -1;
+      sortState.key = key;
+      renderEnumeratorTable();
+    });
+  });
+
+  document.getElementById('enum-search').addEventListener('input', renderEnumeratorTable);
+}
+
+function renderEnumeratorTable() {
+  const search = (document.getElementById('enum-search').value || '').toLowerCase();
+  const { key, dir } = sortState;
+
+  let rows = enumRows.filter(r => r.name.toLowerCase().includes(search));
+  rows.sort((a, b) => {
+    if (key === 'count') return (a.count - b.count) * dir;
+    return a.name.localeCompare(b.name) * dir;
+  });
+
+  document.querySelectorAll('#enum-table th').forEach(th => {
+    const arrow = th.querySelector('.arrow');
+    arrow.textContent = (th.getAttribute('data-key') === key) ? (dir === 1 ? '\u25B2' : '\u25BC') : '';
+  });
+
+  const tbody = document.querySelector('#enum-table tbody');
+  tbody.innerHTML = rows.map(r =>
+    `<tr><td>${r.name}</td><td class="count">${r.count}</td></tr>`
+  ).join('') || '<tr><td colspan="2" style="color:var(--muted);">No matching enumerators</td></tr>';
 }
 
 loadSummary();
