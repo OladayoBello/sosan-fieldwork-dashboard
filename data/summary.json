@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-12T16:46:47.788267+00:00",
-  "total_submissions": 554,
-  "completed_submissions": 554,
+  "generated_at": "2026-09-12T18:57:53.231158+00:00",
+  "total_submissions": 578,
+  "completed_submissions": 578,
   "by_enumerator": {
     "enum_a": 40,
-    "enum_b": 40,
+    "enum_b": 47,
     "enum_c": 49,
     "enum_d": 47,
     "enum_e": 47,
     "enum_f": 47,
     "enum_g": 40,
     "enum_h": 49,
-    "enum_i": 40,
-    "enum_j": 46,
-    "enum_k": 42,
+    "enum_i": 47,
+    "enum_j": 48,
+    "enum_k": 50,
     "enum_r": 47
   },
   "by_lga": {
@@ -21,7 +21,7 @@
     "jega": 132,
     "gwandu": 99,
     "augie": 80,
-    "bagudo": 49,
+    "bagudo": 73,
     "shanga": 1
   },
   "by_community": {
@@ -29,6 +29,7 @@
     "Dumbegu (Dumbegu/basora)": 13,
     "Millionaire quarters  (Ribah machika )": 13,
     "Hayi (Ribah/Michika)": 13,
+    "Bahindi (Bahindi)": 12,
     "DANGAMAJI (DANGAMAJI)": 11,
     "Gindi (Gindi Nasarawa  Kyarmi)": 11,
     "Dumbegu  (Dumbegu Basaura )": 10,
@@ -49,6 +50,7 @@
     "Bagaye (Bagaye Mera)": 6,
     "Tiggi (Baraje)": 6,
     "Unguwar Buzaya  (Magaji B )": 6,
+    "Sarauniya (Bagudo Tuga)": 6,
     "Kofar Masama (Marafa)": 5,
     "Gidan ubankasa (Augie North)": 5,
     "BAGAYE MERA (BAGAYE)": 5,
@@ -58,7 +60,6 @@
     "Bayan turaku (Bagudo/tuga)": 5,
     "Shiyar gandu  (Kande kurugu )": 5,
     "Matsikai  (Matsikai/Geza )": 5,
-    "Bahindi (Bahindi)": 5,
     "Kaurare (Malisa)": 4,
     "KOFAR MASAMA (MARAFA)": 4,
     "Saman dutsi  (Dangaladima )": 4,
@@ -80,6 +81,7 @@
     "Unguwar Buzaya (Magaji B)": 3,
     "Kofar gabas  (Magaji B )": 3,
     "Millionaire quarters  (Ribah/machika)": 3,
+    "Matsinkai  (Matsinkai/ Geza )": 3,
     "Birije  (Malisa )": 2,
     "Kofar masama (Marafa)": 2,
     "Sabon gari (Masama)": 2,
@@ -112,6 +114,7 @@
     "Bayan Turaku Area (Bagudo Tuga Ward)": 2,
     "Unguwar Sarauniya  (Bagudo Tuga )": 2,
     "Unguwar Sarauniya (Bagudo Tuga)": 2,
+    "Matsinkai  (Matsinkai/Geza )": 2,
     "Kofar gotomo (Gwandu Dangaladima )": 1,
     "Sanyinnawa Area  (Masama Ward )": 1,
     "Sanyinnawa Area (Masama )": 1,
@@ -248,7 +251,13 @@
     "Zagga  (Zagga )": 1,
     "Matsikai  (Matsikai/Geza)": 1,
     "Matsikai  (Matsikai /Geza )": 1,
-    "Matsikai  (Masinkai/Geza )": 1
+    "Matsikai  (Masinkai/Geza )": 1,
+    "Sarauniya  (Bagudo Tuga)": 1,
+    "Bihinda (Bihinda)": 1,
+    "Bahinda (Bahindi)": 1,
+    "Matsinkai (Matsinkai/Geza)": 1,
+    "Matsinkai (Mastinkai/Geza)": 1,
+    "Matsinkai (Matsinkai/ Geza)": 1
   },
   "by_date": {
     "2026-09-03": 1,
@@ -259,7 +268,8 @@
     "2026-09-09": 46,
     "2026-09-10": 92,
     "2026-09-11": 82,
-    "2026-09-12": 47
+    "2026-09-12": 70,
+    "2026-09-13": 1
   },
   "gps_issue_count": 16,
   "by_gps_reason": {
