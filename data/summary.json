@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-12T20:10:38.474620+00:00",
-  "total_submissions": 586,
-  "completed_submissions": 586,
+  "generated_at": "2026-09-12T21:20:48.160480+00:00",
+  "total_submissions": 593,
+  "completed_submissions": 593,
   "by_enumerator": {
-    "enum_a": 40,
+    "enum_a": 47,
     "enum_b": 47,
     "enum_c": 49,
     "enum_d": 47,
@@ -20,7 +20,7 @@
     "wasagu_danko": 173,
     "jega": 132,
     "gwandu": 99,
-    "bagudo": 81,
+    "bagudo": 88,
     "augie": 80,
     "shanga": 1
   },
@@ -82,6 +82,7 @@
     "Kofar gabas  (Magaji B )": 3,
     "Millionaire quarters  (Ribah/machika)": 3,
     "Matsinkai  (Matsinkai/ Geza )": 3,
+    "Shiyan gandu  (Kande kurugu )": 3,
     "Birije  (Malisa )": 2,
     "Kofar masama (Marafa)": 2,
     "Sabon gari (Masama)": 2,
@@ -115,6 +116,7 @@
     "Unguwar Sarauniya  (Bagudo Tuga )": 2,
     "Unguwar Sarauniya (Bagudo Tuga)": 2,
     "Matsinkai  (Matsinkai/Geza )": 2,
+    "Shiyan gandu (Kande kurugu)": 2,
     "Kofar gotomo (Gwandu Dangaladima )": 1,
     "Sanyinnawa Area  (Masama Ward )": 1,
     "Sanyinnawa Area (Masama )": 1,
@@ -257,7 +259,9 @@
     "Bahinda (Bahindi)": 1,
     "Matsinkai (Matsinkai/Geza)": 1,
     "Matsinkai (Mastinkai/Geza)": 1,
-    "Matsinkai (Matsinkai/ Geza)": 1
+    "Matsinkai (Matsinkai/ Geza)": 1,
+    "Shiyan gandu (Kande kurugu )": 1,
+    "Shiyan gandu  (Kende kurugu )": 1
   },
   "by_date": {
     "2026-09-03": 1,
@@ -268,7 +272,7 @@
     "2026-09-09": 46,
     "2026-09-10": 92,
     "2026-09-11": 82,
-    "2026-09-12": 78,
+    "2026-09-12": 85,
     "2026-09-13": 1
   },
   "gps_issue_count": 16,
