@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-12T18:57:53.231158+00:00",
-  "total_submissions": 578,
-  "completed_submissions": 578,
+  "generated_at": "2026-09-12T20:08:46.480949+00:00",
+  "total_submissions": 586,
+  "completed_submissions": 586,
   "by_enumerator": {
     "enum_a": 40,
     "enum_b": 47,
@@ -9,7 +9,7 @@
     "enum_d": 47,
     "enum_e": 47,
     "enum_f": 47,
-    "enum_g": 40,
+    "enum_g": 48,
     "enum_h": 49,
     "enum_i": 47,
     "enum_j": 48,
@@ -20,8 +20,8 @@
     "wasagu_danko": 173,
     "jega": 132,
     "gwandu": 99,
+    "bagudo": 81,
     "augie": 80,
-    "bagudo": 73,
     "shanga": 1
   },
   "by_community": {
@@ -29,6 +29,7 @@
     "Dumbegu (Dumbegu/basora)": 13,
     "Millionaire quarters  (Ribah machika )": 13,
     "Hayi (Ribah/Michika)": 13,
+    "Zagga (Zagga)": 12,
     "Bahindi (Bahindi)": 12,
     "DANGAMAJI (DANGAMAJI)": 11,
     "Gindi (Gindi Nasarawa  Kyarmi)": 11,
@@ -67,7 +68,6 @@
     "Dumbegu  (Dumbegu/Basaura )": 4,
     "Millonaire quarters (Ribah/machika)": 4,
     "Unguwan diba (Waje)": 4,
-    "Zagga (Zagga)": 4,
     "Birije (Malisa)": 3,
     "Mabera (Masama)": 3,
     "Jalija  (Jalija )": 3,
@@ -268,7 +268,7 @@
     "2026-09-09": 46,
     "2026-09-10": 92,
     "2026-09-11": 82,
-    "2026-09-12": 70,
+    "2026-09-12": 78,
     "2026-09-13": 1
   },
   "gps_issue_count": 16,
