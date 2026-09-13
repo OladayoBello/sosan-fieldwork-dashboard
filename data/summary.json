@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-13T03:22:48.216858+00:00",
-  "total_submissions": 593,
-  "completed_submissions": 593,
+  "generated_at": "2026-09-13T13:46:26.878733+00:00",
+  "total_submissions": 600,
+  "completed_submissions": 600,
   "by_enumerator": {
     "enum_a": 47,
     "enum_b": 47,
     "enum_c": 49,
-    "enum_d": 47,
+    "enum_d": 53,
     "enum_e": 47,
-    "enum_f": 47,
+    "enum_f": 48,
     "enum_g": 48,
     "enum_h": 49,
     "enum_i": 47,
@@ -20,7 +20,7 @@
     "wasagu_danko": 173,
     "jega": 132,
     "gwandu": 99,
-    "bagudo": 88,
+    "bagudo": 95,
     "augie": 80,
     "shanga": 1
   },
@@ -51,6 +51,7 @@
     "Bagaye (Bagaye Mera)": 6,
     "Tiggi (Baraje)": 6,
     "Unguwar Buzaya  (Magaji B )": 6,
+    "Bayan turaku (Bagudo/tuga)": 6,
     "Sarauniya (Bagudo Tuga)": 6,
     "Kofar Masama (Marafa)": 5,
     "Gidan ubankasa (Augie North)": 5,
@@ -58,7 +59,7 @@
     "Unguwaryama (Ribah Machika)": 5,
     "Ungwan yamma (Ribah machika)": 5,
     "Kango (Ribah/Michika)": 5,
-    "Bayan turaku (Bagudo/tuga)": 5,
+    "Bayan turaku (Bagudo tuga)": 5,
     "Shiyar gandu  (Kande kurugu )": 5,
     "Matsikai  (Matsikai/Geza )": 5,
     "Kaurare (Malisa)": 4,
@@ -239,7 +240,6 @@
     "Ungwan Yamma (Ribah/machika)": 1,
     "Ungwan Yamma  (Ribah machika )": 1,
     "Hayi (Ribah/Shanga)": 1,
-    "Bayan turaku (Bagudo tuga)": 1,
     "Bayan turaku (Bagudo/ tuga)": 1,
     "Bayan Turaku Area (Bagudo Tuga Ward )": 1,
     "gg (Bagudo Tunga Ward)": 1,
@@ -261,7 +261,9 @@
     "Matsinkai (Mastinkai/Geza)": 1,
     "Matsinkai (Matsinkai/ Geza)": 1,
     "Shiyan gandu (Kande kurugu )": 1,
-    "Shiyan gandu  (Kende kurugu )": 1
+    "Shiyan gandu  (Kende kurugu )": 1,
+    "Bayan Turaku (Bagudo Tuga )": 1,
+    "Bayan turaku (Bagudo Tuga)": 1
   },
   "by_date": {
     "2026-09-03": 1,
@@ -273,7 +275,7 @@
     "2026-09-10": 92,
     "2026-09-11": 82,
     "2026-09-12": 85,
-    "2026-09-13": 1
+    "2026-09-13": 8
   },
   "gps_issue_count": 16,
   "by_gps_reason": {
