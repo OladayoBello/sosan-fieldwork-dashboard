@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-14T18:50:29.415458+00:00",
-  "total_submissions": 725,
-  "completed_submissions": 725,
+  "generated_at": "2026-09-14T19:50:16.642703+00:00",
+  "total_submissions": 740,
+  "completed_submissions": 740,
   "by_enumerator": {
     "enum_a": 53,
     "enum_b": 63,
@@ -11,10 +11,10 @@
     "enum_f": 62,
     "enum_g": 61,
     "enum_h": 62,
-    "enum_i": 51,
+    "enum_i": 59,
     "enum_j": 60,
     "enum_k": 55,
-    "enum_r": 54
+    "enum_r": 61
   },
   "by_lga": {
     "wasagu_danko": 173,
@@ -22,7 +22,7 @@
     "jega": 133,
     "gwandu": 101,
     "augie": 80,
-    "shanga": 56
+    "shanga": 71
   },
   "by_community": {
     "Zagga (Zagga)": 35,
@@ -52,6 +52,7 @@
     "Shiyan gandu  (Kande kurugu )": 7,
     "Saminaka unguwar liman (Shanga)": 7,
     "Saminaka (Saminaka)": 7,
+    "Saminaka (Shanga)": 7,
     "Dalijan (Dalijan)": 6,
     "Bagaye (Bagaye Mera)": 6,
     "Tiggi (Baraje)": 6,
@@ -69,6 +70,7 @@
     "Bayan turaku (Bagudo tuga)": 5,
     "Unguwar Sarauniya  (Bagudo Tuga)": 5,
     "Samunaka (Samunaka)": 5,
+    "Keri (Rafin kirya)": 5,
     "Kaurare (Malisa)": 4,
     "KOFAR MASAMA (MARAFA)": 4,
     "Saman dutsi  (Dangaladima )": 4,
@@ -101,7 +103,6 @@
     "Unguwar Yamma (Takware ward )": 3,
     "Unguwan yamma (Takware)": 3,
     "Unguwar yamma (Takware)": 3,
-    "Keri (Rafin kirya)": 3,
     "Birije  (Malisa )": 2,
     "Kofar masama (Marafa)": 2,
     "Sabon gari (Masama)": 2,
@@ -136,6 +137,7 @@
     "Bayan Turaku (Bagudo Tuga)": 2,
     "Saminaka garkar liman Area (Shanga ward)": 2,
     "Unguwar Yamma  (Takware ward )": 2,
+    "Ungwan Yamma  (Takware )": 2,
     "Kofar gotomo (Gwandu Dangaladima )": 1,
     "Sanyinnawa Area  (Masama Ward )": 1,
     "Sanyinnawa Area (Masama )": 1,
@@ -293,7 +295,11 @@
     "Unguwar Yamma (Takware ward)": 1,
     "Tungar giwa  (Takware)": 1,
     "Samunaka (Shanga)": 1,
-    "Unguwar maisabo (Takware Ward)": 1
+    "Unguwar maisabo (Takware Ward)": 1,
+    "Tungar giwa (Takware)": 1,
+    "Ungwan yamma (Takware)": 1,
+    "Ungwan Yamma (Takware)": 1,
+    "Saiminaka (Shanga)": 1
   },
   "by_date": {
     "2026-09-03": 1,
@@ -306,7 +312,7 @@
     "2026-09-11": 82,
     "2026-09-12": 85,
     "2026-09-13": 76,
-    "2026-09-14": 56
+    "2026-09-14": 71
   },
   "gps_issue_count": 17,
   "by_gps_reason": {
