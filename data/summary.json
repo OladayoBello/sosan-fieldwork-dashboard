@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-15T06:39:24.753302+00:00",
-  "total_submissions": 754,
-  "completed_submissions": 754,
+  "generated_at": "2026-09-15T11:10:00.473453+00:00",
+  "total_submissions": 756,
+  "completed_submissions": 756,
   "by_enumerator": {
-    "enum_a": 58,
+    "enum_a": 60,
     "enum_b": 63,
     "enum_c": 61,
     "enum_d": 61,
@@ -21,17 +21,17 @@
     "bagudo": 161,
     "jega": 133,
     "gwandu": 101,
-    "shanga": 84,
+    "shanga": 86,
     "augie": 80
   },
   "by_community": {
     "Zagga (Zagga)": 35,
     "HAYI (RIBAH MACHIKA)": 15,
+    "Saminaka (Shanga)": 14,
     "Dumbegu (Dumbegu/basora)": 13,
     "Millionaire quarters  (Ribah machika )": 13,
     "Hayi (Ribah/Michika)": 13,
     "Bahindi (Bahindi)": 12,
-    "Saminaka (Shanga)": 12,
     "DANGAMAJI (DANGAMAJI)": 11,
     "Gindi (Gindi Nasarawa  Kyarmi)": 11,
     "Shiyar gandu  (Kande kurugu )": 11,
@@ -317,7 +317,7 @@
     "2026-09-11": 82,
     "2026-09-12": 85,
     "2026-09-13": 76,
-    "2026-09-14": 84
+    "2026-09-14": 86
   },
   "gps_issue_count": 18,
   "by_gps_reason": {
